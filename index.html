@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>clearance-cert-lab — sound mesh-mesh gap intervals</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; background: #07090c; color: #d7e0ea; }
+  #app { display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+  aside { padding: 16px; border-right: 1px solid #1d2632; overflow: auto; }
+  h1 { font-size: 15px; margin: 0 0 4px; color: #eaf2fb; }
+  .sub { color: #7d8b9c; margin-bottom: 16px; font-size: 12px; }
+  label { display: block; margin: 14px 0 4px; color: #9fb0c3; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+  select, input[type=range] { width: 100%; }
+  select { background: #0d131b; color: #d7e0ea; border: 1px solid #233041; padding: 6px; }
+  .readout { margin-top: 18px; border: 1px solid #1d2632; padding: 10px; background: #0a0f15; }
+  .row { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; }
+  .k { color: #7d8b9c; }
+  .v { color: #eaf2fb; }
+  .ok { color: #59d18c; } .bad { color: #ff7b72; } .warn { color: #e3b341; }
+  .note { margin-top: 14px; font-size: 11px; color: #64748b; }
+  #stage { position: relative; }
+  canvas { display: block; }
+  #hud { position: absolute; left: 14px; bottom: 14px; font-size: 12px; color: #8fa3b8; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app">
+  <aside>
+    <h1>clearance-cert-lab</h1>
+    <div class="sub">sound gap intervals from the same core.mjs that node verifies</div>
+    <label for="case">mesh pair</label>
+    <select id="case"></select>
+    <label for="target">required clearance (fraction of min bbox diagonal)</label>
+    <input id="target" type="range" min="0.02" max="0.6" step="0.005" value="0.12" />
+    <div class="row"><span class="k">target</span><span class="v" id="targetV"></span></div>
+    <div class="readout">
+      <div class="row"><span class="k">verdict</span><span class="v" id="verdict">—</span></div>
+      <div class="row"><span class="k">interval lo</span><span class="v" id="lo">—</span></div>
+      <div class="row"><span class="k">interval hi</span><span class="v" id="hi">—</span></div>
+      <div class="row"><span class="k">certified</span><span class="v" id="cert">—</span></div>
+      <div class="row"><span class="k">tri-pair tests</span><span class="v" id="tests">—</span></div>
+      <div class="row"><span class="k">vs brute force</span><span class="v" id="red">—</span></div>
+      <div class="row"><span class="k">compute</span><span class="v" id="ms">—</span></div>
+    </div>
+    <p class="note">
+      The browser calls the exact same <code>closestPair</code> / <code>certifyClearance</code> functions
+      that <code>bench/verify.mjs</code> asserts on. Nothing is recomputed in the shader or the UI.
+      Drag the slider: a green verdict means every point of B is provably at least <em>target</em> away
+      from A; red shows the closest witness pair.
+    </p>
+  </aside>
+  <div id="stage"><div id="hud">orbit: drag / wheel</div></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

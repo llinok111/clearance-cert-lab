@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-11-12T14:26:37.895Z",
+  "node": "v24.19.0",
+  "platform": "linux/x64",
+  "corpus": {
+    "cases": 47,
+    "order": "all 47 corpus pairs (box / plane / tetra / near-touch / contact / scale ladder)",
+    "coldMs": 17.81,
+    "n": 7,
+    "min": 2.41,
+    "median": 3.325,
+    "p95": 7.638,
+    "max": 7.638,
+    "stddev": 1.63,
+    "rsdPct": 41.47,
+    "certified": 47
+  },
+  "perf": {
+    "meshA": "icosphere 1280 tris",
+    "meshB": "icosphere 1280 tris",
+    "totalPairs": 1638400,
+    "leafTests": 5911,
+    "nodePairs": 2833,
+    "pairReductionPct": 99.64,
+    "certified": true,
+    "hi": 1.111368015,
+    "interval": [
+      1.107903913,
+      1.111368015
+    ],
+    "coldMs": 44.46,
+    "n": 7,
+    "min": 25.676,
+    "median": 26.654,
+    "p95": 29.505,
+    "max": 29.505,
+    "stddev": 1.251,
+    "rsdPct": 4.61,
+    "speedupVsBruteMedian": 159.53
+  },
+  "baselineBruteForce": {
+    "implementation": "src/core.mjs bruteForceDistance (same tri-tri routine, no pruning)",
+    "totalPairs": 1638400,
+    "coldMs": 4263.28,
+    "n": 3,
+    "min": 4239.358,
+    "median": 4252.095,
+    "p95": 4318.328,
+    "max": 4318.328,
+    "stddev": 34.618,
+    "rsdPct": 0.81,
+    "distance": 1.111368015
+  },
+  "agreementWithBaseline": {
+    "absDiff": 0,
+    "note": "brute force is exact for these faceted spheres; the interval hi must be >= truth and within tol"
+  },
+  "notes": [
+    "coldMs is the first invocation (JIT cold); warm samples are separate.",
+    "P95 is the nearest-rank order statistic of the samples.",
+    "RSD is population stddev / mean over the warm samples."
+  ]
+}
