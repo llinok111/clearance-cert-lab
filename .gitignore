@@ -10,3 +10,4 @@ __pycache__/
 *.7z
 .DS_Store
 .model-patch.yml
+state/
