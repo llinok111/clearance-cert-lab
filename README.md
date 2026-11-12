@@ -40,7 +40,7 @@ The browser needs network access to `unpkg.com/three@0.169.0` (version pinned in
 | scale invariance 1e-6 / 1e-3 / 1 / 1e3 / 1e6 | `lo/scale` spread **1.11e-16**, `hi/scale` spread 9.71e-17 |
 | sampling estimate is not a bound | median error 0.00%, max +412.3%; **4/6 touching pairs look clear** |
 | predicate count on 320×320 sphere pair | 1,617 / 102,400 = **1.58%** (63.3× fewer) |
-| budget exhaustion (`maxPairs: 1`) | `certified: false`, reason `budget-exhausted`, interval `[0.2828, 2.0038]` |
+| budget exhaustion (`maxPairs: 1`) | `certified: false`, reason `budget-exhausted`, interval `[0.2828427124746193, 1.5087]` |
 | three-valued clearance verdict | `certified-clear [0.1998, 0.2000]` at target 0.15; `contact-witness` at 0.25 (gap 0.2000) |
 | determinism | two runs identical `[lo, hi, leafTests, nodePairs]` |
 | witness realises the gap | `|pa-pb| = 0.634978565 = hi` |
